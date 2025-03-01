@@ -1,35 +1,97 @@
-html{
+/* Mobile-first (default styles, no media queries) */
+html {
     scroll-behavior: smooth;
 }
+
 body {
     background-color: #dedede;
     padding: 5px;
     margin: 15px;
     font-size: 25px;
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
     text-align: center;
-    font-family:Arial, sans-serif;
     font-size: 1.95em;
 }
 
-h2{
-    text-align:center;
-  }
-
-li{
-    margin-top: 20px;
+h2 {
+    text-align: center;
 }
 
-img{
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+figure {
+    text-align: center;
+    padding: 10px;
+}
+
+img {
     border: 5px solid blue;
     border-radius: 35px;
     width: 100%;
-  }
+}
 
-.label{
+.label {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Tablet View (≥772px) */
+@media (min-width: 772px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    figure {
+        border-radius: 50%; /* Circular shape */
+    }
+
+    /* Last figure takes both columns */
+    figure:last-child {
+        grid-column: span 2;
+    }
+}
+
+/* Large Screen View (≥992px) */
+@media (min-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Remove border radius */
+    figure {
+        border-radius: 0;
+    }
+
+    /* Every third figure spans two columns */
+    figure:nth-child(3n) {
+        grid-column: span 2;
+    }
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+        color: #f0e68c; /* Light yellow text */
+    }
+
+    figure {
+        background-color: #333;
+        color: #f0e68c;
+        border-color: black;
+    }
 }
